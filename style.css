@@ -31,3 +31,11 @@ body{
 .balance {
   background-color: orange;
 }
+
+@media (max-width: 576px) {
+  div {
+    gap: 20px;
+    text-align: center;
+  }
+
+}
