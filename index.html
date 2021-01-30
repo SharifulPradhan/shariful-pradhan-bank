@@ -81,31 +81,28 @@
 
       document.getElementById('add-amount').value = '';
     })
-    function updateBankAccount(id, depositNumber){
-      const currentBalance = document.getElementById(id).innerText;
-      const currentBalanceNumber = parseFloat(currentBalance);
-      const totalBalance = depositNumber + currentBalanceNumber;
-      document.getElementById(id).innerText = totalBalance;
-    }
+    
     // Withdraw event handeler 
     const withdrawButton = document.getElementById('withdrawButton');
     withdrawButton.addEventListener('click', function(){
       const withdrawAmountNumber = getInputNumber('withdrawAmount');
 
-      const currentWithdraw = document.getElementById('currentWithdraw').innerText;
-      const currentWithdrawNumber = parseFloat(currentWithdraw);
-      const withdrawTotal = withdrawAmountNumber + currentWithdrawNumber;
-      document.getElementById('currentWithdraw').innerText = withdrawTotal;
-
-      const currentBalance = document.getElementById('currentBalance').innerText;
-      const currentBalanceNumber = parseFloat(currentBalance);
-      const balanceTotalAfterWithdraw = currentBalanceNumber - withdrawAmountNumber;
-      document.getElementById('currentBalance').innerText = balanceTotalAfterWithdraw;
+      updateBankAccount('currentWithdraw', withdrawAmountNumber);
+      updateBankAccount('currentBalance', -1 * withdrawAmountNumber);
 
 
       document.getElementById('withdrawAmount').value = '';
       })
+      
+      // function for update deposit, withdraw, balance number
+      function updateBankAccount(id, depositNumber){
+      const currentBalance = document.getElementById(id).innerText;
+      const currentBalanceNumber = parseFloat(currentBalance);
+      const totalBalance = depositNumber + currentBalanceNumber;
+      document.getElementById(id).innerText = totalBalance;
+    }
 
+    // function for change input value to number
       function getInputNumber(id){
         const Amount = document.getElementById(id).value;
         const AmountNumber = parseFloat(Amount);
